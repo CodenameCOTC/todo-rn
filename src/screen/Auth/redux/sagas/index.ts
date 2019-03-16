@@ -1,4 +1,6 @@
 import { all, put, takeEvery, call, fork } from 'redux-saga/effects'
+import AsyncStorage from '@react-native-community/async-storage'
+import jwt_decode from 'jwt-decode'
 import { AuthActionTypes, ILoginData } from '../types'
 import * as actions from '../actions'
 import { requestLogin } from '../network'
@@ -14,7 +16,11 @@ export function* requestLoginApi(action: IAction) {
     if (res.error) {
       return yield put(actions.requestLoginFailure(res.error))
     }
-    yield put(actions.requestLoginSuccess(res))
+    yield call(AsyncStorage.setItem, 'jwt', res.token)
+    const token = yield call(AsyncStorage.getItem, 'jwt')
+    console.log({ token })
+    const decoded = jwt_decode(res.token)
+    yield put(actions.requestLoginSuccess(decoded))
   } catch (err) {
     const error = {
       message: 'Unknown error occurs',

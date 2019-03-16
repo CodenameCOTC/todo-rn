@@ -9,3 +9,6 @@ export const requestLoginSuccess = (user: UserType) =>
 
 export const requestLoginFailure = (error: AuthErrorType) =>
   action(AuthActionTypes.LOGIN_FAILURE, error)
+
+export const setCurrentUser = (user: UserType) =>
+  action(AuthActionTypes.SET_CURRENT_USER, user)
