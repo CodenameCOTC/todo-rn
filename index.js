@@ -1,7 +1,10 @@
 import { Navigation } from 'react-native-navigation'
 import { HomeScreen } from './src/screen'
 
+import registerScreen from './src/registerScreen'
 import { colors } from './src/constants'
+
+registerScreen()
 
 Navigation.registerComponent(`Home`, () => HomeScreen)
 
@@ -27,7 +30,7 @@ Navigation.events().registerAppLaunchedListener(() => {
         children: [
           {
             component: {
-              name: 'Home',
+              name: 'LoginScreen',
               id: '@Home',
             },
           },
