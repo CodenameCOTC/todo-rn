@@ -17,6 +17,7 @@ Navigation.events().registerAppLaunchedListener(() => {
       title: {
         color: colors.textOnPrimary,
         fontFamily: 'Ubuntu',
+        alignment: 'center',
       },
     },
     statusBar: {
