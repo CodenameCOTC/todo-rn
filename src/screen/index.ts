@@ -1,4 +1,4 @@
 import HomeScreen from './Home'
-import LoginScreen from './Login'
+import LoginScreen from './Auth/Login'
 
 export { HomeScreen, LoginScreen }
