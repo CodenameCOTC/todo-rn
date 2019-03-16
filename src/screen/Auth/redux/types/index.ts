@@ -8,6 +8,7 @@ export type UserType = {
 export type AuthErrorType = {
   username?: string
   password?: string
+  message?: string
 }
 
 export interface AuthState {
@@ -23,10 +24,8 @@ export interface ILoginSuccesResponse {
 }
 
 export interface ILoginData {
-  userData: {
-    username: string
-    password: string
-  }
+  username: string
+  password: string
 }
 
 export enum AuthActionTypes {

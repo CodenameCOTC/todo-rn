@@ -5,15 +5,20 @@ import { requestLogin } from '../network'
 
 interface IAction {
   type: string
-  data: ILoginData
+  payload: ILoginData
 }
 
 export function* requestLoginApi(action: IAction) {
   try {
-    const res = yield call(requestLogin, action.data)
+    const res = yield call(requestLogin, action.payload)
+    if (res.error) {
+      return yield put(actions.requestLoginFailure(res.error))
+    }
     yield put(actions.requestLoginSuccess(res))
-    console.log(res)
-  } catch (error) {
+  } catch (err) {
+    const error = {
+      message: 'Unknown error occurs',
+    }
     yield put(actions.requestLoginFailure(error))
   }
 }

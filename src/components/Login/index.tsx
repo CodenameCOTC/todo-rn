@@ -1,16 +1,36 @@
-import React, { PureComponent, ComponentLifecycle } from 'react'
+import React, { PureComponent } from 'react'
 import { StyleSheet } from 'react-native'
+import { Dispatch, bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
 import { Container, Form, MainButton } from '../common'
+import { requestLogin } from '../../screen/Auth/redux/actions'
+import { AuthState, ILoginData } from '../../screen/Auth/redux/types'
+import { ApplicationState, ConnectedReduxProps } from '../../store'
 
 interface ILoginState {
   username: string
   password: string
 }
 
+interface IMapStateToProps {
+  auth: AuthState
+  requestLogin(data: ILoginData): any
+}
+
 interface ILoginProps {}
 
-class Login extends PureComponent<ILoginProps, ILoginState> {
-  constructor(props: ILoginProps) {
+type Props = IMapStateToProps & ILoginProps & ConnectedReduxProps
+
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators({ requestLogin }, dispatch)
+
+const mapStateToProps = (state: ApplicationState) => ({
+  auth: state.auth,
+})
+
+class Login extends PureComponent<Props, ILoginState> {
+  constructor(props: Props) {
     super(props)
     this.state = {
       username: '',
@@ -23,11 +43,14 @@ class Login extends PureComponent<ILoginProps, ILoginState> {
   }
 
   handleOnSubmit = () => {
-    console.log(this.state)
+    const { username, password } = this.state
+    this.props.requestLogin({ username, password })
   }
 
   render() {
     const { username, password } = this.state
+    const { isLoading } = this.props.auth
+
     return (
       <Container style={styles.container}>
         <Form
@@ -51,7 +74,11 @@ class Login extends PureComponent<ILoginProps, ILoginState> {
             returnKeyType: 'done',
           }}
         />
-        <MainButton title="Login" onPress={this.handleOnSubmit} />
+        <MainButton
+          title="Login"
+          onPress={this.handleOnSubmit}
+          isLoading={isLoading}
+        />
       </Container>
     )
   }
@@ -70,4 +97,7 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Login
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login)

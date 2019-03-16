@@ -35,12 +35,12 @@ const sagaMiddleware = createSagaMiddleware()
 
 const reduxMiddleware = applyMiddleware(sagaMiddleware)
 
-const store = createStore(rootReducer, composeWithDevTools(reduxMiddleware))
-
 function* rootSagas() {
   yield all([fork(authRootSagas)])
 }
 
-rootSagas()
+const store = createStore(rootReducer, composeWithDevTools(reduxMiddleware))
+
+sagaMiddleware.run(rootSagas)
 
 export default store

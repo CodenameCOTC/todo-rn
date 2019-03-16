@@ -20,10 +20,10 @@ const authReducer: Reducer = (
         error: {},
       }
 
-    case AuthActionTypes.LOGIN_FAILURE:
+    case AuthActionTypes.LOGIN_SUCCESS:
       return {
         ...state,
-        user: action.user,
+        user: action.payload,
         isLoading: false,
         error: {},
       }
@@ -32,7 +32,7 @@ const authReducer: Reducer = (
       return {
         ...state,
         isLoading: false,
-        error: action.error,
+        error: action.payload,
       }
     default:
       return state
