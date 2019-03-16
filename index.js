@@ -1,9 +1,9 @@
 import { Navigation } from 'react-native-navigation'
-import App from './src/App'
+import { HomeScreen } from './src/screen'
 
 import { colors } from './src/constants'
 
-Navigation.registerComponent(`Home`, () => App)
+Navigation.registerComponent(`Home`, () => HomeScreen)
 
 Navigation.events().registerAppLaunchedListener(() => {
   Navigation.setDefaultOptions({
