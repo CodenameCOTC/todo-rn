@@ -22,4 +22,5 @@ Navigation.events().registerAppLaunchedListener(async () => {
     await store.dispatch(setCurrentUser(decoded))
     return HomeNavigation()
   }
+  return AuthNavigation()
 })
