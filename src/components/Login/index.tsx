@@ -49,7 +49,7 @@ class Login extends PureComponent<Props, ILoginState> {
 
   render() {
     const { username, password } = this.state
-    const { isLoading } = this.props.auth
+    const { isLoading, error } = this.props.auth
 
     return (
       <Container style={styles.container}>
@@ -62,6 +62,7 @@ class Login extends PureComponent<Props, ILoginState> {
           textInputProps={{
             returnKeyType: 'next',
           }}
+          error={error.username}
         />
         <Form
           name="password"
@@ -73,6 +74,7 @@ class Login extends PureComponent<Props, ILoginState> {
             secureTextEntry: true,
             returnKeyType: 'done',
           }}
+          error={error.password}
         />
         <MainButton
           title="Login"

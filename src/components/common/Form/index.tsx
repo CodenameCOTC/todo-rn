@@ -21,6 +21,7 @@ interface IFormProps {
   label: string
   value: string
   placeholder?: string
+  error?: string
   onChangeText(name: string, value: string): void
   containerStyle?: StyleProp<containerStyle>
   textInputProps?: TextInputProps
@@ -34,17 +35,19 @@ const Form: React.SFC<IFormProps> = ({
   containerStyle,
   onChangeText,
   textInputProps,
+  error,
 }) => (
   <View style={[styles.container, containerStyle]}>
-    <Text style={styles.label}>{label}</Text>
+    <Text style={error ? styles.labelError : styles.label}>{label}</Text>
     <TextInput
-      style={styles.form}
+      style={error ? styles.formError : styles.form}
       value={value}
       placeholder={placeholder}
       placeholderTextColor={'grey'}
       onChangeText={value => onChangeText(name, value)}
       {...textInputProps}
     />
+    {error && <Text style={styles.textError}>{error}</Text>}
   </View>
 )
 
