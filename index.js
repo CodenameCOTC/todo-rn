@@ -1,13 +1,37 @@
 import { Navigation } from 'react-native-navigation'
 import App from './src/App'
 
-Navigation.registerComponent(`navigation.playground.WelcomeScreen`, () => App)
+import { colors } from './src/constants'
+
+Navigation.registerComponent(`Home`, () => App)
 
 Navigation.events().registerAppLaunchedListener(() => {
+  Navigation.setDefaultOptions({
+    topBar: {
+      background: {
+        color: colors.primary,
+      },
+      title: {
+        color: colors.textOnPrimary,
+        fontFamily: 'Ubuntu',
+      },
+    },
+    statusBar: {
+      backgroundColor: colors.secondary,
+      style: 'light',
+    },
+  })
   Navigation.setRoot({
     root: {
-      component: {
-        name: 'navigation.playground.WelcomeScreen',
+      stack: {
+        children: [
+          {
+            component: {
+              name: 'Home',
+              id: '@Home',
+            },
+          },
+        ],
       },
     },
   })
