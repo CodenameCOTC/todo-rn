@@ -24,7 +24,7 @@ export interface ITodoItemState {
 }
 
 export interface ITodoState {
-  todos: ITodoItemState
+  items: ITodoItemState
 }
 
 export enum TodosActionTypes {

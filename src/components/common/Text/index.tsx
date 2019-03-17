@@ -8,7 +8,7 @@ const defaultStyle = StyleSheet.create({
 })
 
 const DefaultText: React.SFC<TextProps> = props => (
-  <Text {...props} style={[defaultStyle.text, props.style]}>
+  <Text {...props} style={[props.style, defaultStyle.text]}>
     {props.children}
   </Text>
 )

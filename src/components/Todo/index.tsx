@@ -3,6 +3,7 @@ import { View } from 'react-native'
 import { connect } from 'react-redux'
 import { Dispatch, bindActionCreators } from 'redux'
 
+import TodoItem from './TodoItem'
 import { Text } from '../common'
 import { ITodoState } from './redux/types'
 import { ApplicationState, ConnectedReduxProps } from '../../store'
@@ -24,11 +25,11 @@ class Todo extends PureComponent<Props, ITodoSate> {
     this.props.requestTodos()
   }
   render() {
-    return (
-      <View>
-        <Text>I'm a Todo Component</Text>
-      </View>
-    )
+    const { todo } = this.props.todos.items
+    const renderTodoItems = todo.map(item => (
+      <TodoItem todo={item} key={item._id} />
+    ))
+    return <View>{renderTodoItems}</View>
   }
 }
 

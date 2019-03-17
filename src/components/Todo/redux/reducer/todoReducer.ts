@@ -8,7 +8,6 @@ const initialState: ITodoItemState = {
 }
 
 const todoReducer = (state = initialState, action: any): ITodoItemState => {
-  console.log(action.type)
   switch (action.type) {
     case TodosActionTypes.REQUEST_TODOS:
       return {

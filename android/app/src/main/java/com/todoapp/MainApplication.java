@@ -3,6 +3,7 @@ package com.todoapp;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.oblador.vectoricons.VectorIconsPackage;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.facebook.react.ReactNativeHost;
@@ -39,10 +40,8 @@ public class MainApplication extends NavigationApplication {
     // Add additional packages you require here
     // No need to add RnnPackage and MainReactPackage
     return Arrays.<ReactPackage>asList(
-    // eg. new VectorIconsPackage()
-    new LinearGradientPackage(),
-    new AsyncStoragePackage()
-    );
+        // eg. new VectorIconsPackage()
+        new LinearGradientPackage(), new AsyncStoragePackage(), new VectorIconsPackage());
   }
 
   @Override
