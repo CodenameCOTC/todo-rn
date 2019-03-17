@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
-import { View, Text } from 'react-native'
 
+import { Todo, Container } from '../../components'
 import options from './index.options'
 
 class Home extends PureComponent {
@@ -9,9 +9,9 @@ class Home extends PureComponent {
   }
   render() {
     return (
-      <View>
-        <Text>This will be Home Screen</Text>
-      </View>
+      <Container>
+        <Todo />
+      </Container>
     )
   }
 }

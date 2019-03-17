@@ -22,7 +22,11 @@ export const HomeNavigation = (layoutStack: LayoutStack) => {
     topBar: {
       background: { color: colors.primary },
       backButton: { color: 'white' },
-      title: { alignment: 'center' },
+      title: {
+        alignment: 'center',
+        color: colors.textOnPrimary,
+        fontFamily: 'Ubuntu',
+      },
     },
   })
   Navigation.setRoot({
