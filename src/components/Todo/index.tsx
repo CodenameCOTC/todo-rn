@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { View } from 'react-native'
+import { View, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 import { Dispatch, bindActionCreators } from 'redux'
 
@@ -26,10 +26,21 @@ class Todo extends PureComponent<Props, ITodoSate> {
   }
   render() {
     const { todo } = this.props.todos.items
-    const renderTodoItems = todo.map(item => (
-      <TodoItem todo={item} key={item._id} />
-    ))
-    return <View>{renderTodoItems}</View>
+
+    return (
+      <View style={{ flex: 1 }}>
+        <FlatList
+          contentContainerStyle={{
+            backgroundColor: '#fff',
+            marginTop: 50,
+          }}
+          data={todo}
+          renderItem={({ item }) => <TodoItem todo={item} />}
+          keyExtractor={({ _id }) => _id}
+          ListFooterComponent={<View style={{ height: 100 }} />}
+        />
+      </View>
+    )
   }
 }
 

@@ -10,6 +10,8 @@ const options: IOptions = {
       text: 'Todo App',
       alignment: 'center',
     },
+    hideOnScroll: true,
+    drawBehind: true,
   },
 }
 
