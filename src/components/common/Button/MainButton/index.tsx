@@ -1,10 +1,5 @@
 import React from 'react'
-import {
-  TouchableOpacity,
-  TouchableNativeFeedback,
-  ActivityIndicator,
-  Platform,
-} from 'react-native'
+import { TouchableOpacity, ActivityIndicator } from 'react-native'
 import Text from '../../Text'
 
 import styles from './index.styles'
@@ -30,41 +25,26 @@ const MainButton: React.SFC<IMainButton> = ({
   isLoading,
   disabled,
 }) => {
-  return Platform.select({
-    android: (
-      <TouchableNativeFeedback
-        style={[
-          styles.button,
-          { marginTop, marginRight, marginLeft, marginBottom },
-        ]}
-        onPress={onPress}
-        disabled={isLoading || disabled}
-      >
-        <Text style={styles.textButton}>{title}</Text>
-        {isLoading && <ActivityIndicator size="small" color="white" />}
-      </TouchableNativeFeedback>
-    ),
-    ios: (
-      <TouchableOpacity
-        disabled={isLoading || disabled}
-        activeOpacity={0.8}
-        style={[
-          styles.button,
-          { marginTop, marginRight, marginLeft, marginBottom },
-        ]}
-        onPress={onPress}
-      >
-        <Text style={styles.textButton}>{title}</Text>
-        {isLoading && (
-          <ActivityIndicator
-            size="small"
-            color="white"
-            style={styles.loadingIndicator}
-          />
-        )}
-      </TouchableOpacity>
-    ),
-  })
+  return (
+    <TouchableOpacity
+      disabled={isLoading || disabled}
+      activeOpacity={0.8}
+      style={[
+        styles.button,
+        { marginTop, marginRight, marginLeft, marginBottom },
+      ]}
+      onPress={onPress}
+    >
+      <Text style={styles.textButton}>{title}</Text>
+      {isLoading && (
+        <ActivityIndicator
+          size="small"
+          color="white"
+          style={styles.loadingIndicator}
+        />
+      )}
+    </TouchableOpacity>
+  )
 }
 
 export default MainButton
