@@ -4,6 +4,7 @@ import jwt_decode from 'jwt-decode'
 
 import store from './src/store'
 import registerScreen from './src/registerScreen'
+import { request } from './src/constants'
 import { HomeNavigation, AuthNavigation } from './src/navigation'
 import { setCurrentUser } from './src/screen/Auth/redux/actions'
 
@@ -19,6 +20,7 @@ Navigation.events().registerAppLaunchedListener(async () => {
       return AuthNavigation()
       //@TODO CREATE FUNCTION TO DESTROY TOKEN
     }
+    request.defaults.headers['Authorization'] = token
     await store.dispatch(setCurrentUser(decoded))
     return HomeNavigation()
   }

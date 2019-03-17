@@ -13,7 +13,7 @@ export const HomeScreen: LayoutStackChildren = {
 
 export const defaultHomeLayoutStack: LayoutStack = { children: [HomeScreen] }
 
-export const HomeNavigation = (layoutStack: LayoutStack) => {
+export const HomeNavigation = (layoutStack?: LayoutStack) => {
   Navigation.setDefaultOptions({
     statusBar: {
       backgroundColor: colors.secondary,

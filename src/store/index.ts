@@ -23,7 +23,6 @@ export interface ApplicationState {
   todos: ITodoState
 }
 
-// Additional props for connected React components. This prop is passed by default with `connect()`
 export interface ConnectedReduxProps<A extends Action = AnyAction> {
   dispatch?: Dispatch<A>
 }
@@ -33,16 +32,12 @@ export const rootReducer = combineReducers({
   todos: todosRootReducer,
 })
 
-export function* rootSaga() {
-  yield all([fork(authRootSagas), fork(todosRootSagas)])
-}
-
 const sagaMiddleware = createSagaMiddleware()
 
 const reduxMiddleware = applyMiddleware(sagaMiddleware)
 
 function* rootSagas() {
-  yield all([fork(authRootSagas)])
+  yield all([fork(authRootSagas), fork(todosRootSagas)])
 }
 
 const store = createStore(rootReducer, composeWithDevTools(reduxMiddleware))
